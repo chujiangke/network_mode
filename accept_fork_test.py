@@ -18,7 +18,7 @@ def grim_reaper(signum, frame):
 
 if __name__ == '__main__':
 	signal.signal(signal.SIGCHLD, grim_reaper)
-	child_process_number = 50
+	child_process_number = 10
 	for i in range(child_process_number):
 		pid = os.fork()
 		if pid == 0:
@@ -29,5 +29,6 @@ if __name__ == '__main__':
 			print("recv:{}".format(szBuf.decode('utf-8')))
 			sock.close()
 			print("end of connect")
+			break
 		else:
 			logging.info("current child_process_number:{}".format(i))
